@@ -440,6 +440,7 @@ class CfgFunctions
 			class cTracker {};
 			class gCache {};
 			class gUncache {};
+			class cStoreRestore {};
 		};
 		class groupMarkers {
 			file = "f\groupMarkers";
