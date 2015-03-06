@@ -63,7 +63,7 @@ class Mission
 	class Intel
 	{
 		briefingName="fa3_sandbox_v5";
-		overviewText="Trimmed version of the FA template for sandbox ZEUS play.";
+		overviewText="Trimmed version of the FA template for sandbox ZEUS play. Respawn enabled.";
 		resistanceWest=0;
 		startWeather=0.84999996;
 		startWind=0;
