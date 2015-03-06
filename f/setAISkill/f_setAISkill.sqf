@@ -8,12 +8,6 @@ if !(isServer) exitWith {};
 
 // ====================================================================================
 
-// WAIT UNTIL THE MISSION HAS STARTED
-
-sleep 0.1;
-
-// ====================================================================================
-
 // DECLARE VARIABLES AND FUNCTIONS
 
 private ["_units","_superSkill","_highSkill","_mediumSkill","_lowSkill"];
@@ -45,7 +39,7 @@ f_var_skillSet = [
 ];
 
 // The final skill will be +/- this range
-f_var_skillRandom = 0.15;
+f_var_skillRandom = 0.12;
 
 // ====================================================================================
 
@@ -110,7 +104,5 @@ _skillArray = [];
 			[_x,_skillArray] call f_fnc_setAISkill;
 		};
      };
-
-sleep 0.1; // Very short sleep to avoid lag when modifiyng a lot of AI
 
 } forEach _units;

@@ -242,7 +242,7 @@ class f_param_AISkill_BLUFOR
 	title = "$STR_f_param_AISkill_BLUFOR";
 	values[] = {0,1,2,3};
 	texts[] = {$STR_f_param_AISkill_Option0,$STR_f_param_AISkill_Option1,$STR_f_param_AISkill_Option2,$STR_f_param_AISkill_Option3};
-	default = 1;
+	default = 2;
 	code = "f_param_AISkill_BLUFOR = %1";
 };
 
@@ -251,7 +251,7 @@ class f_param_AISkill_OPFOR
 	title = "$STR_f_param_AISkill_OPFOR";
 	values[] = {0,1,2,3};
 	texts[] = {$STR_f_param_AISkill_Option0,$STR_f_param_AISkill_Option1,$STR_f_param_AISkill_Option2,$STR_f_param_AISkill_Option3};
-	default = 1;
+	default = 2;
 	code = "f_param_AISkill_OPFOR = %1";
 };
 
@@ -260,7 +260,7 @@ class f_param_AISkill_INDP
 	title = "$STR_f_param_AISkill_INDP";
 	values[] = {0,1,2,3};
 	texts[] = {$STR_f_param_AISkill_Option0,$STR_f_param_AISkill_Option1,$STR_f_param_AISkill_Option2,$STR_f_param_AISkill_Option3};
-	default = 1;
+	default = 2;
 	code = "f_param_AISkill_INDP = %1";
 };
 
@@ -327,10 +327,14 @@ class CfgRespawnTemplates
 
 class CfgFunctions
 {
-	//ws_fnc
-	#include "ws_fnc\config.hpp"
+   //ws_fnc
+    #include "ws_fnc\config.hpp"
 
-	class F // Defines the "owner"
+   // Vip's Simple Mine System
+   #include "vip_cmn\fn\vip_cmn_fnc.hpp"
+   #include "vip_sms\fn\vip_sms_fnc.hpp"
+
+   class F
 	{
 		class common // category
 		{
@@ -455,3 +459,15 @@ class CfgFunctions
 class CfgUnitInsignia {
 	#include "f\assignGear\insignia\define.hpp"
 };
+
+// ============================================================================================
+
+// Vip's Simple Mine System
+class CfgRemoteExecCommands {
+
+      #include "vip_cmn\fn\vip_cmn_fnc_remoteExec.hpp"
+      #include "vip_sms\fn\vip_sms_fnc_remoteExec.hpp"
+   };
+
+   #include "vip_cmn\resource\vip_dlg_defaults.hpp"
+   #include "vip_sms\resource\vip_sms_dlg.hpp"
