@@ -66,10 +66,9 @@ _unit assignCurator _curator;
 _curator setCuratorWaypointCost 0;
 {_curator setCuratorCoef [_x,0];} forEach ["place","edit","delete","destroy","group","synchronize"];
 
+// Synchronize the new curator with all already present curators
 if (_synchronize) then {
-	{
-		 [_curator,_x] call f_fnc_zeusSyncCurators;
-	} forEach allCurators - [_curator];
+	[_curator] call f_fnc_zeusSyncCurators;
 };
 
 // Check if F3 AI Skill Selector is active and assign corresponding event-handler
