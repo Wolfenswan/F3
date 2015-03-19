@@ -33,11 +33,12 @@ enableDebugConsole = 1;
 // F3 - Respawn Settings
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
-respawn = 2;
+disabledAI = 1;
+respawn = 3;
 respawndelay = 5;
 respawnOnStart = 0;
 //respawnTemplates[] = {"Seagull","f_spectator","f_JIP"};
-respawnTemplates[] = {"f_JIP"};
+respawnTemplates[] = {"MenuPosition","f_JIP"};
 
 // ============================================================================================
 
