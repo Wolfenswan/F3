@@ -5643,7 +5643,7 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					init="this addEventHandler ['CuratorObjectPlaced',{{[[_x],""f_fnc_setAISkill"",_x,false,true] spawn BIS_fnc_MP;} forEach crew(_this select 1)}];this addCuratorEditableObjects [playableUnits,true];";
+					init="this addCuratorEditableObjects [playableUnits,true]; [this] call f_fnc_zeusSyncCurators; this addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISkill;} forEach crew(_this select 1)}];";
 				};
 			};
 		};
@@ -5709,7 +5709,7 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					init="this addEventHandler ['CuratorObjectPlaced',{{[[_x],""f_fnc_setAISkill"",_x,false,true] spawn BIS_fnc_MP;} forEach crew(_this select 1)}];this addCuratorEditableObjects [playableUnits,true];";
+					init="this addCuratorEditableObjects [playableUnits,true]; [this] call f_fnc_zeusSyncCurators; this addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISkill;} forEach crew(_this select 1)}];";
 				};
 			};
 		};
@@ -5775,7 +5775,7 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					init="this addEventHandler ['CuratorObjectPlaced',{{[[_x],""f_fnc_setAISkill"",_x,false,true] spawn BIS_fnc_MP;} forEach crew(_this select 1)}];this addCuratorEditableObjects [playableUnits,true];";
+					init="this addCuratorEditableObjects [playableUnits,true]; [this] call f_fnc_zeusSyncCurators; this addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISkill;} forEach crew(_this select 1)}];";
 				};
 			};
 		};
@@ -5841,7 +5841,7 @@ class Mission
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
-					init="this addEventHandler ['CuratorObjectPlaced',{{[[_x],""f_fnc_setAISkill"",_x,false,true] spawn BIS_fnc_MP;} forEach crew(_this select 1)}]; this addCuratorEditableObjects [playableUnits,true];";
+					init="this addCuratorEditableObjects [playableUnits,true]; [this] call f_fnc_zeusSyncCurators; this addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISkill;} forEach crew(_this select 1)}];";
 				};
 			};
 		};
