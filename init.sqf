@@ -70,13 +70,13 @@ if(isServer) then {
 
 // ====================================================================================
 
-// F3 - Automatic Body Removal
+// F3 - Garbage Collector
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 
-// f_var_removeBodyDelay = 180;
-// f_var_removeBodyDistance = 500;
-// f_var_doNotRemoveBodies = [];
-// [] execVM "f\removeBody\f_addRemoveBodyEH.sqf";
+// f_var_garbageCollectorMaxBodies = 40; // The maximum amount of dead objects which can be present in the mission
+// f_var_garbageCollectorSleep = 300;	 // How often to check for clean up
+// f_var_garbageCollectorDistance = 450; // The minimal distance to a player for the GC to remove a body
+// [] execVM "f\garbageCollector\f_garbageCollectorLoop.sqf";
 
 // ====================================================================================
 
