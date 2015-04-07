@@ -34,17 +34,19 @@ if (isNil "f_var_cStoreRestoreGrps") then {
 } forEach f_var_cStoreRestoreGrps;
 
 /*
-_grp = [_this,0,grpNull] call BIS_fnc_param;
-_id = [_this,1,""] call BIS_fnc_param;
+_id = _this select 0;
+_grp = [_this,1,grpNull] call BIS_fnc_param;
 
 // If the global array doesn't exist yet, create it
-if (isNil "f_cStoreRestoreGrps") then {
-	f_cStoreRestoreGrps = [];
+if (isNil "f_var_cStoreRestoreGrps") then {
+	f_var_cStoreRestoreGrps = [];
 };
 
+if !(isNull _grp) then {
+
 // Add the group to the global array if it hasn't been already
-if !(_grp in f_cStoreRestoreGrps) then {
-	f_cStoreRestoreGrps = pushBack (_grp);
+if !(_grp in f_var_cStoreRestoreGrps) then {
+	f_var_cStoreRestoreGrps pushBack (_grp);
 };
 
 // Mark the group as to be excluded from regular caching
