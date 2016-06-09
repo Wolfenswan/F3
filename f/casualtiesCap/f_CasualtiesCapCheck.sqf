@@ -58,7 +58,7 @@ if(typeName _targets != typename []) then {
 	if (typeName _x == typeName west) then {
 		_side = _x;
 		{
-			if (side _x == _side) && (_onlyPlayers && (leader _x in playableUnits)) then {
+			if (side _x == _side) then {
 				_grps pushBack _x;
 			};
 		} forEach allGroups;
