@@ -48,14 +48,14 @@ _faction = if (count _this > 4) then {_this select 4} else {[]};
 _grps = [];
 
 // If only a single side or group was passed put it into an array for further processing
-if(typeName _targets =! "ARRAY") then {
+if(typeName _targets != typename []) then {
 	_targets = [_targets];
 };
 
 // Loop through the array of _targets
 {
 	// If it's a side, loop through all groups and add the side's groups to the array
-	if (typeName _x == "SIDE") then {
+	if (typeName _x == typeName west) then {
 		_side = _x;
 		{
 			if (side _x == _side) && (_onlyPlayers && (leader _x in playableUnits)) then {
@@ -65,10 +65,9 @@ if(typeName _targets =! "ARRAY") then {
 
 	// If group names were passed we need to turn them from strings into objects
 	} else {
-		_Tgrp = call compile format ["%1",_x];
-		if(!isnil "_Tgrp") then
+		if(!isnil _x) then
 		{
-			_grps pushBack _x;
+			_grps pushBack (call compile format ["%1",_x]);
 		};
 	};
 } forEach _targets;
@@ -76,6 +75,7 @@ if(typeName _targets =! "ARRAY") then {
 // Filter all non-player groups
 if (_onlyPlayers) then {
 	{
+		_grp = _x;
 		if ({_x in playableUnits} count units _grp == 0) then
 		{
 			_grps = _grps - [_x];
@@ -114,7 +114,7 @@ _started = 0;
 {_started = _started + (count (units _x))} forEach _grps;
 
 // DEBUG
-if (f_param_debugMode == 1) then
+if (f_var_debugMode == 1) then
 {
 	player sideChat format ["DEBUG (f\casualtiesCap\f_CasualtiesCapCheck.sqf): _started = %1",_started];
 };
@@ -138,7 +138,7 @@ while {true} do
 	} forEach _grps;
 
 // DEBUG
-	if (f_param_debugMode == 1) then
+	if (f_var_debugMode == 1) then
 	{
 		player sideChat format ["DEBUG (f\casualtiesCap\f_CasualtiesCapCheck.sqf): _remaining = %1",_remaining];
 	};

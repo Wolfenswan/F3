@@ -52,23 +52,23 @@ if (typeName _objects == "SIDE") then {
 		if !(_x in playableUnits) then {_units = _units - [_x]};
 		} forEach _units;
 	};
+
 // Otherwise populate the units array using the passed strings, checking if it's either a group or a unit
 } else {
 	{
-
-		if(!isnil _x) then
+		_temp = _x;
+		if !(isnil _temp) then
 		{
 			_temp = call compile format ["%1",_x];
-			player globalchat format ["%1",typeName _temp];
 			if (typename _temp == "GROUP") then {
 				{
 					if !(_x in _units) then {
-						_units set [count _units,_x];
+						_units pushback _x;
 					};
 				} forEach units _temp;
 			} else {
-				if !(_x in _units) then {
-					_units set [count _units,_temp];
+				if !(_temp in _units) then {
+					_units pushback _temp;
 				};
 			};
 		};
@@ -105,7 +105,7 @@ _alive = {alive _x} count _units;
 if (_alive == 0) exitWith {_safe = 0};
 
 // DEBUG
-if (f_param_debugMode == 1) then
+if (f_var_debugMode == 1) then
 {
 	player sideChat format ["DEBUG (f\EandECheck\f_EandECheckLoop.sqf): _alive = %1",_alive];
 };
@@ -119,7 +119,7 @@ if (f_param_debugMode == 1) then
 _safe = {(_x distance _pos < _safeDistance)} count _units;
 
 // DEBUG
-if (f_param_debugMode == 1) then
+if (f_var_debugMode == 1) then
 {
 	player sideChat format ["DEBUG (f\EandECheck\f_EandECheckLoop.sqf): _safe = %1",_safe];
 };
@@ -147,5 +147,3 @@ if (_safe > 0) then {
 		[_end,"bis_fnc_spawn",true] call BIS_fnc_MP;
 	};
 };
-
-player GlobalChat format ["DEBUG (f\EandECheck\f_EandECheckLoop.sqf): Ending didn't fire, should either be code or scalar. _end = %1, typeName _end: %2",_end,typeName _end];
