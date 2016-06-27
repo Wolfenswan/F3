@@ -4,45 +4,24 @@
 
 // DECLARE PRIVATE VARIABLES
 
-private ["_grp","_mkrType","_mkrText","_mkrColor","_mkrName","_mkr","_grpName"];
-
 // ====================================================================================
 
 // SET KEY VARIABLES
 // Using variables passed to the script instance, we will create some local variables:
 
-call compile format ["
-if(!isnil '%1') then
-{
-	_grp = %1;
-};
-",_this select 0];
+params["_grpName",["_mkrType","b_hq"],"_mkrText",["_mkrColor","ColorBlack"]];
 
-_grpName = _this select 0;
-_mkrType = _this select 1;
-_mkrText = _this select 2;
-_mkrColor = _this select 3;
-_mkrName = format ["mkr_%1",_grpName];
+private _grp = missionNamespace getVariable [_grpName,grpNull];
+private _mkrName = format ["mkr_%1",_grpName];
 
 // ====================================================================================
 
 // WAIT FOR GROUP TO EXIST IN-MISSION
 // We wait for the group to have members before creating the marker.
 
-if (isNil "_grp") then
+if (isNull _grp) then
 {
-	call compile format ["
-		waitUntil {
-		sleep 3;
-		if(!isnil '%1') then
-		{
-			count units %1 > 0
-		};
-		};
-		_grp = %1;
-
-	",_grpName];
-
+	waitUntil { sleep 3; _grp = missionNamespace getVariable [_grpName,grpNull]; count (units _grp) > 0 };
 };
 
 // ====================================================================================
@@ -57,6 +36,14 @@ if (isnil "_grp") exitWith {};
 // CREATE MARKER
 // Depending on the value of _mkrType a different type of marker is created.
 
+_mkr = createMarkerLocal [_mkrName,[(getPos leader _grp select 0),(getPos leader _grp select 1)]];
+_mkr setMarkerShapeLocal "ICON";
+_mkrName setMarkerTypeLocal  _mkrType;
+_mkrName setMarkerColorLocal _mkrColor;
+_mkrName setMarkerSizeLocal [0.8, 0.8];
+_mkrName setMarkerTextLocal _mkrText;
+
+/*
 switch (_mkrType) do
 {
 
@@ -181,6 +168,7 @@ switch (_mkrType) do
 		_mkrName setMarkerTextLocal _mkrText;
 	};
 };
+*/
 
 // ====================================================================================
 

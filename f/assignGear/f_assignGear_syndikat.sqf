@@ -1,4 +1,4 @@
-// F3 - Folk ARPS Assign Gear Script - FIA
+// F3 - Folk ARPS Assign Gear Script - SYNDIKAT
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 
@@ -860,7 +860,7 @@ switch (_typeofUnit) do
 		["g"] call _backpack;
 	};
 
-#include "f_assignGear_fia_v.sqf";
+#include "f_assignGear_syndikat_v.sqf";
 
 // LOADOUT: DEFAULT/UNDEFINED (use RIFLEMAN)
    default

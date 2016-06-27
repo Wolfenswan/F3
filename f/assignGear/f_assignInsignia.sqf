@@ -2,12 +2,9 @@
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 
-private ["_group","_badge","_groupBadges","_roleBadge","_unit","_typeofUnit"];
-
-_badge = ""; 
-_unit = _this select 0;
-_typeofUnit = _this select 1;
-_faction = toLower (faction _unit);
+private _badge = "";
+params ["_unit", "_typeOfUnit"];
+private _faction = toLower (faction _unit);
 
 // Note all badges must be defined in description.ext or be included your modpack.
 // See: https://community.bistudio.com/wiki/Arma_3_Unit_Insignia
@@ -20,18 +17,18 @@ _faction = toLower (faction _unit);
 
 // Assign Insignia based on type of the unit.
 
-_roleBadge = switch (_typeofUnit) do
+private _roleBadge = switch (_typeofUnit) do
 {
 
 // INSIGNIA: MEDIC
 	case "m":
 	{
 		switch (_faction) do
-		{	
+		{
 			case "blu_f": {"NATO_Medic_Badge"};
 			case "opf_f": {"CSAT_Medic_Badge"};
 			case "ind_f": {"AAF_Medic_Badge"};
-			default {"NATO_Medic_Badge"};			
+			default {"NATO_Medic_Badge"};
 		};
 	};
 	default {""};
@@ -42,10 +39,10 @@ _roleBadge = switch (_typeofUnit) do
 // This array stores a list of groups and the corresponding badge they will receive.
 // Bin by faction (lowers numbers of groups for each unit to be grouped by too!).
 
-_groupBadges = [];
+private _groupBadges = [];
 
 switch (_faction) do
-{	
+{
 	case "blu_f" : {
 		_groupBadges = [
 			["GrpNATO_ASL","NATO_ASL_Badge"],
@@ -154,7 +151,24 @@ switch (_faction) do
 			["GrpIFIA_DC","NATO_DC_Badge"]
 		];
 	};
-
+	case "ind_c_f" :{
+		_groupBadges = [
+			["GrpSyndikat_ASL","NATO_ASL_Badge"],
+			["GrpSyndikat_A1","NATO_A1_Badge"],
+			["GrpSyndikat_A2","NATO_A2_Badge"],
+			["GrpSyndikat_A3","NATO_A3_Badge"],
+			["GrpSyndikat_BSL","NATO_BSL_Badge"],
+			["GrpSyndikat_B1","NATO_B1_Badge"],
+			["GrpSyndikat_B2","NATO_B2_Badge"],
+			["GrpSyndikat_B3","NATO_B3_Badge"],
+			["GrpSyndikat_CSL","NATO_CSL_Badge"],
+			["GrpSyndikat_C1","NATO_C1_Badge"],
+			["GrpSyndikat_C2","NATO_C2_Badge"],
+			["GrpSyndikat_C3","NATO_C3_Badge"],
+			["GrpSyndikat_CO","NATO_CO_Badge"],
+			["GrpSyndikat_DC","NATO_DC_Badge"]
+		];
+	};
 };
 
 // ====================================================================================
@@ -163,7 +177,7 @@ switch (_faction) do
 
 // Loop through the groups and match badges to the group _unit belongs to. Due to the groups being variables this requires calling formatted at runtime code.
 
-_group = (group _unit);
+private _group = (group _unit);
 
 
 {
@@ -181,18 +195,17 @@ if (_roleBadge != "") then {
 // Apply the insignia.
 if (_badge != "") then {
 	// spawn to avoid waitUntil bug.
-	private["_index","_texture","_cfgTexture"];
 
 	// Wait till they have the proper uniform assigned.
 	waitUntil{_unit getVariable ["f_var_assignGear_done",false]};
 	waitUntil{(uniform _unit) != ""};
 
 	// Replicate behaviour of setInsignia
-	_cfgTexture = [["CfgUnitInsignia",_badge],configfile] call bis_fnc_loadclass;
+	private _cfgTexture = [["CfgUnitInsignia",_badge],configfile] call bis_fnc_loadclass;
 	if (_cfgTexture == configfile) exitwith {["'%1' not found in CfgUnitInsignia",_badge] call bis_fnc_error; false};
-	_texture = gettext (_cfgTexture >> "texture");
-	
-	_index = -1;
+	private _texture = gettext (_cfgTexture >> "texture");
+
+	private _index = -1;
 	{
 		if (_x == "insignia") exitwith {_index = _foreachindex;};
 	} foreach getarray (configfile >> "CfgVehicles" >> gettext (configfile >> "CfgWeapons" >> uniform _unit >> "ItemInfo" >> "uniformClass") >> "hiddenSelections");

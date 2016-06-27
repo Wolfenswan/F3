@@ -11,11 +11,6 @@ if (!isDedicated && (isNull player)) then
     waitUntil {sleep 0.1; !isNull player};
 };
 
-// ====================================================================================
-
-// DECLARE VARIABLES AND FUNCTIONS
-
-private ["_unitfaction"];
 
 // ====================================================================================
 
@@ -23,7 +18,7 @@ private ["_unitfaction"];
 // The following code detects what faction the player's slot belongs to, and stores
 // it in the private variable _unitfaction
 
-_unitfaction = toLower (faction player);
+private _unitfaction = toLower (faction player);
 
 // If the unitfaction is different from the group leader's faction, the latters faction is used
 if (_unitfaction != toLower (faction (leader group player))) then {_unitfaction = toLower (faction (leader group player))};
@@ -101,6 +96,7 @@ if (_unitfaction == "opf_f") exitwith {
 	player sideChat format ["DEBUG (briefing.sqf): Briefing for %1 slot selected.",_unitfaction];
 	};
 };
+
 // ====================================================================================
 
 // BRIEFING: INDEPENDENT > AAF
@@ -110,6 +106,23 @@ if (_unitfaction == "opf_f") exitwith {
 if (_unitfaction == "ind_f") exitwith {
 
 #include "f\briefing\f_briefing_aaf.sqf"
+
+// DEBUG
+	if (f_param_debugMode == 1) then
+	{
+	player sideChat format ["DEBUG (briefing.sqf): Briefing for %1 slot selected.",_unitfaction];
+	};
+};
+
+// ====================================================================================
+
+// BRIEFING: INDEPENDENT > SYNDIKAT
+// The following block of code executes only if the player is in a Syndikat
+// slot; it automatically includes a file which contains the appropriate briefing data.
+
+if (_unitfaction == "ind_c_f") exitwith {
+
+#include "f\briefing\f_briefing_syndikat.sqf"
 
 // DEBUG
 	if (f_param_debugMode == 1) then

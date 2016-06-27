@@ -28,17 +28,11 @@ private ["_grps","_pc","_end","_started","_remaining","_targets","_alive","_fact
 // 1: = What % of units must be dead before the ending is triggered
 // 2: = What ending will be executed. Can also be code.
 
-_targets = _this select 0; // either single group/side or array with group strings or sides
-_pc = _this select 1;
-_end = _this select 2;
-
-// SET OPTIONAL VARIABLES
 // The last two variables are optional, and may not be passed to the script.
-// 3: = If only groups with a playable leader slot will be included (default is true)
+// 3: = If only player groups will be included (default is false)
 // 4: = What faction(s) to filter for if the first variable is a side  (e.g. ["blu_f"])
 
-_onlyPlayers = if (count _this > 3) then {_this select 3} else {true};
-_faction = if (count _this > 4) then {_this select 4} else {[]};
+params [_targets,_pc,_end[_onlyPlayers,false],[_faction,[]]];
 
 // ====================================================================================
 
