@@ -196,10 +196,6 @@ _MMGmag_tr = "150Rnd_93x64_Mag";
 _DMrifle = "srifle_EBR_F";
 _DMriflemag = "20Rnd_762x51_Mag";
 
-// Marksman rifle
-_DMrifle = "srifle_EBR_F";
-_DMriflemag = "20Rnd_762x51_Mag";
-
 // Rifleman AT
 _RAT = "launch_NLAW_F";
 _RATmag = "NLAW_F";
