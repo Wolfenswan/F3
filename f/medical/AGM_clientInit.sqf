@@ -19,19 +19,11 @@ player addItem "AGM_Morphine";
 
 if (_typeOfUnit == "m") then
 {
-
 	// BACKPACK: LIGHT
-	if (f_param_backpacks <= 1) then {
+	if (f_param_loadouts <= 1) then {
 		(unitBackpack player) addItemCargoGlobal ["AGM_Bandage",  15];
 		(unitBackpack player) addItemCargoGlobal ["AGM_Morphine", 10];
 		(unitBackpack player) addItemCargoGlobal ["AGM_Epipen",   10];
 		(unitBackpack player) addItemCargoGlobal ["AGM_Bloodbag", 2];
-	};
-	// BACKPACK: HEAVY
-	if (f_param_backpacks == 2) then {
-		(unitBackpack player) addItemCargoGlobal ["AGM_Bandage", 25];
-		(unitBackpack player) addItemCargoGlobal ["AGM_Morphine", 15];
-		(unitBackpack player) addItemCargoGlobal ["AGM_Epipen",   15];
-		(unitBackpack player) addItemCargoGlobal ["AGM_Bloodbag", 4];
 	};
 };
