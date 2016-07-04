@@ -20,13 +20,4 @@ call
 			[player] execVM "f\simplewoundingsystem\init.sqf";
 		};
 	};
-	// Authentic Gameplay Modification
-	if (f_param_medical == 2) exitWith
-	{
-		// If script is being run on a client
-		if (hasInterface) then
-		{
-			[] execVM "f\medical\AGM_clientInit.sqf";
-		};
-	};
 };

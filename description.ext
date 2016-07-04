@@ -152,8 +152,8 @@ class Params
     class f_param_medical
     {
             title = "Medical System";
-            values[] = {0,1,2};
-            texts[] = {"Arma 3 Default","F3 Simple Wounding System","Authentic Gameplay Mod"};
+            values[] = {0,1};
+            texts[] = {"Arma 3 Default","F3 Simple Wounding System"};
             default = 0;
     };
 
