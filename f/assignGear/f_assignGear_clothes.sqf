@@ -29,16 +29,6 @@ _rig = switch (f_param_loadouts) do {
 
 // Flip through unit to assign specialized uniforms
 
-// Light
-if (_typeOfUnit in _light) then {
-	_rig = _lightRig;
-};
-
-// Heavy
-if (_typeOfUnit in _heavy) then {
-	_rig = _heavyRig;
-};
-
 // Pilot
 if (_typeOfUnit in _pilot) then {
 	_helmet = _pilotHelmet;

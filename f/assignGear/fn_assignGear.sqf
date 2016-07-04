@@ -2,15 +2,9 @@
 // Credits: Please see the F3 online manual (http://www.ferstaberinde.com/f3/en/)
 // ====================================================================================
 
-// DECLARE VARIABLES AND FUNCTIONS
-
-
-// ====================================================================================
-
-// DETECT unit FACTION
+// DETECT UNIT FACTION
 // The following code detects what faction the unit's slot belongs to, and stores
 // it in the private variable _faction. It can also be passed as an optional parameter.
-
 
 params["_typeofUnit","_unit"];
 private _faction = toLower (faction _unit);
