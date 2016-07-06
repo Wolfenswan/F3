@@ -33,7 +33,7 @@
 //		vc			- vehicle commander
 //		vg			- vehicle gunner
 //		vd			- vehicle driver (repair)
-//		pp			- air vehicle pilot / co-pilot
+//		pp			- air vehicle pilot / co-pilot (repair)
 //		pcc			- air vehicle co-pilot (repair) / crew chief (repair)
 //		pc			- air vehicle crew
 //		eng			- engineer (demo)
